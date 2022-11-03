@@ -4,7 +4,6 @@ A playground to work with the [Dall-e API](https://openai.com/blog/dall-e-api-no
 
 ## Setup
 
-
 1. Create a new virtual environment
 
    ```bash
@@ -28,3 +27,10 @@ A playground to work with the [Dall-e API](https://openai.com/blog/dall-e-api-no
 
 5. Run the app
 
+   ```bash
+   $ uvicorn main:app --reload
+   ```
+
+You should now be able to access the app at [http://localhost:8000](http://localhost:8000)!
+
+Based on [OpenAI Flask tutorial](https://beta.openai.com/docs/quickstart) but made in FastAPI ❤️
