@@ -20,6 +20,11 @@ async def get_animal_name_suggestion(animal_name: str):
     return {"name": response.choices[0].text}
 
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome in openai dall-e playground"}
+
+
 def generate_prompt(animal):
     return """Suggest three names for an animal that is a superhero.
 
