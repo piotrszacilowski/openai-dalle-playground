@@ -3,9 +3,14 @@ import os
 import openai
 
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
+class TextPrompt(BaseModel):
+    text: str
 
 
 @app.post("/animal/{animal_name}")
@@ -18,6 +23,18 @@ async def get_animal_name_suggestion(animal_name: str):
     )
     print(response.choices[0].text)
     return {"name": response.choices[0].text}
+
+
+@app.post("/image")
+async def create_image(input_data: TextPrompt):
+    response = openai.Image.create(
+        prompt=input_data.text,
+        n=1,
+        size="1024x1024"
+    )
+    image_url = response['data'][0]['url']
+    print(f'url: {image_url}')
+    return {"url": image_url}
 
 
 @app.get("/")
