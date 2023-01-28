@@ -15,7 +15,6 @@ class TextPrompt(BaseModel):
 
 @app.post("/animal/{animal_name}")
 async def get_animal_name_suggestion(animal_name: str):
-    print(os.getenv("OPENAI_API_KEY"))
     response = openai.Completion.create(
         model="text-davinci-002",
         prompt=generate_prompt(animal_name),
